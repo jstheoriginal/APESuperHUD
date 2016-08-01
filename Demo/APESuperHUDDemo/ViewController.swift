@@ -82,7 +82,7 @@ class ViewController: UIViewController {
     @IBAction func withLoadingTextButtonPressed(sender: UIButton) {
         APESuperHUD.showOrUpdateHUD(loadingIndicator: .Standard, message: "Demo loading...", presentingView: self.view)
         
-        runWithDelay(3.0, closure: { [weak self] in
+        runWithDelay(delay: 3.0, closure: { [weak self] in
             APESuperHUD.showOrUpdateHUD(icon: .CheckMark, message: "Done loading!", duration: 2.0, presentingView: self!.view, completion: nil)
         })
     }
@@ -90,7 +90,7 @@ class ViewController: UIViewController {
     @IBAction func withoutLoadingTextButtonPressed(sender: UIButton) {
         APESuperHUD.showOrUpdateHUD(loadingIndicator: .Standard, message: "", presentingView: self.view)
         
-        runWithDelay(3.0, closure: { [weak self] in
+        runWithDelay(delay: 3.0, closure: { [weak self] in
             APESuperHUD.removeHUD(animated: true, presentingView: self!.view, completion: nil)
         })
     }
@@ -98,7 +98,7 @@ class ViewController: UIViewController {
     @IBAction func withFunnyLoadingTextButtonPressed(sender: UIButton) {
         APESuperHUD.showOrUpdateHUD(loadingIndicator: .Standard, funnyMessagesLanguage: .English, presentingView: self.view)
         
-        runWithDelay(10.0, closure: { [weak self] in
+        runWithDelay(delay: 10.0, closure: { [weak self] in
             APESuperHUD.removeHUD(animated: true, presentingView: self!.view, completion: nil)
         })
     }
@@ -111,9 +111,10 @@ class ViewController: UIViewController {
 
 extension ViewController {
     
-    func runWithDelay(delay: Double, closure: Void -> Void) {
-        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
-        dispatch_after(time, dispatch_get_main_queue(), closure)
+    func runWithDelay(delay: Double, closure: (Void) -> Void) {
+        DispatchQueue.main.after(when: .now() + delay) {
+            closure()
+        }
     }
 }
 
