@@ -24,7 +24,8 @@
 
 import Foundation
 
-func runWithDelay(delay: Double, closure: Void -> Void) {
-    let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
-    dispatch_after(time, dispatch_get_main_queue(), closure)
+func runWithDelay(delay: Double, closure: (Void) -> Void) {
+    DispatchQueue.main.after(when: .now() + delay) {
+        closure()
+    }
 }

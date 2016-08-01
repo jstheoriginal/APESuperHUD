@@ -34,16 +34,16 @@ public enum BlurEffect {
 
 public struct HUDAppearance {
 
-    public var textColor = UIColor.blackColor()
-    public var backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
-    public var foregroundColor = UIColor.whiteColor()
-    public var iconColor = UIColor.grayColor()
-    public var loadingActivityIndicatorColor = UIColor.grayColor()
+    public var textColor = UIColor.black()
+    public var backgroundColor = UIColor.black().withAlphaComponent(0.5)
+    public var foregroundColor = UIColor.white()
+    public var iconColor = UIColor.gray()
+    public var loadingActivityIndicatorColor = UIColor.gray()
     public var backgroundBlurEffect: BlurEffect = .None
     public var cornerRadius: Double = 10
     public var shadow: Bool = true
-    public var animateInTime: NSTimeInterval = 0.4
-    public var animateOutTime: NSTimeInterval = 0.4
+    public var animateInTime: TimeInterval = 0.4
+    public var animateOutTime: TimeInterval = 0.4
     public var defaultDurationTime: Double = 2.0
     public var cancelableOnTouch = false
     public var fontName: String = "Helvetica"
