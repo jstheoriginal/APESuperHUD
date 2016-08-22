@@ -57,14 +57,16 @@ class ViewController: UIViewController {
         APESuperHUD.appearance.iconHeight = 48
         APESuperHUD.appearance.fontName = "Caviar Dreams"
         APESuperHUD.appearance.fontSize = 14
+        
     }
     
     private func setupButtonsLayout() {
-        loadingWithTextButton.layer.cornerRadius = loadingWithFunnyMessagesButton.frame.height / 2
-        loadingWithoutTextButton.layer.cornerRadius = loadingWithoutTextButton.frame.height / 2
-        loadingWithFunnyMessagesButton.layer.cornerRadius = loadingWithFunnyMessagesButton.frame.height / 2
-        messageWithDefaultIconButton.layer.cornerRadius = messageWithDefaultIconButton.frame.height / 2
-        messageWithCustomIconButton.layer.cornerRadius = messageWithCustomIconButton.frame.height / 2
+        
+        loadingWithTextButton.layer.cornerRadius = loadingWithTextButton.frame.height / 2.0
+        loadingWithoutTextButton.layer.cornerRadius = loadingWithoutTextButton.frame.height / 2.0
+        loadingWithFunnyMessagesButton.layer.cornerRadius = loadingWithFunnyMessagesButton.frame.height / 2.0
+        messageWithDefaultIconButton.layer.cornerRadius = messageWithDefaultIconButton.frame.height / 2.0
+        messageWithCustomIconButton.layer.cornerRadius = messageWithCustomIconButton.frame.height / 2.0
     }
     
     @IBAction func withDefaultIconButtonPressed(sender: UIButton) {
@@ -112,9 +114,7 @@ class ViewController: UIViewController {
 extension ViewController {
     
     func runWithDelay(delay: Double, closure: (Void) -> Void) {
-        DispatchQueue.main.after(when: .now() + delay) {
-            closure()
-        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: closure)
     }
 }
 

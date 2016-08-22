@@ -38,7 +38,7 @@ class HudView: UIView {
     var isActivityIndicatorSpinnning: Bool {
 
         get {
-            return self.loadingActivityIndicator.isAnimating()
+            return self.loadingActivityIndicator.isAnimating
         }
 
     }
@@ -160,7 +160,7 @@ extension HudView {
     
     static func create() -> HudView {
         
-        let view: HudView = HudView(frame: UIScreen.main().bounds)
+        let view: HudView = HudView(frame: UIScreen.main.bounds)
         
         // Colors
         view.informationLabel.textColor = APESuperHUD.appearance.textColor
@@ -174,7 +174,7 @@ extension HudView {
         
         // Shadow
         if APESuperHUD.appearance.shadow {
-            view.hudMessageView.layer.shadowColor = UIColor.black().cgColor
+            view.hudMessageView.layer.shadowColor = UIColor.black.cgColor
             view.hudMessageView.layer.shadowOffset = CGSize(width: 0, height: 0)
             view.hudMessageView.layer.shadowRadius = 6.0
             view.hudMessageView.layer.shadowOpacity = 0.15
@@ -197,7 +197,7 @@ extension HudView {
     func removeHud(animated: Bool, onDone: ((Void) -> Void)?) {
 
         NotificationCenter.default.removeObserver(self)
-        UIDevice.current().endGeneratingDeviceOrientationNotifications()
+        UIDevice.current.endGeneratingDeviceOrientationNotifications()
         timer.invalidate()
         
         if animated {
@@ -314,12 +314,12 @@ extension HudView {
             frame = bounds
             
             if addBlurEffectView() != nil {
-                backgroundColor = UIColor.clear()
+                backgroundColor = UIColor.clear
                 blurEffectView = addBlurEffectView()
                 insertSubview(blurEffectView!, at: 0)
             }
 
-            UIDevice.current().beginGeneratingDeviceOrientationNotifications()
+            UIDevice.current.beginGeneratingDeviceOrientationNotifications()
             NotificationCenter.default.removeObserver(self)
             NotificationCenter.default.addObserver(self, selector: #selector(deviceOrientationDidChange), name: Notification.Name.UIDeviceOrientationDidChange, object: nil)
             

@@ -24,8 +24,8 @@
 
 import Foundation
 
-func runWithDelay(delay: Double, closure: (Void) -> Void) {
-    DispatchQueue.main.after(when: .now() + delay) {
-        closure()
-    }
+func runWithDelay(delay: Double, closure: () -> Void) {
+    
+    DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: closure)
+    
 }
